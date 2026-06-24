@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast"; // <-- Import toast
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -16,19 +18,62 @@ function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      alert("Message sent successfully! (Mock)");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+
+    // Optional: Add a loading toast that we can dismiss later
+    const toastId = toast.loading("Sending message...");
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      ); 
+
+      // Replace alert with success toast
+      toast.success("Message sent successfully!", {
+        id: toastId, // Replaces the loading toast
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Full error:", error);
+
+      if (error.text) {
+        console.log("Error text:", error.text);
+      }
+
+      // Replace alert with error toast
+      toast.error("Failed to send message", {
+        id: toastId, // Replaces the loading toast
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
-  };
+    }
+  };  
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-28 pb-20 px-6">
+      {/* Add Toaster component to render the notifications */}
+      <Toaster 
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: '#333',
+            color: '#fff',
+            borderRadius: '10px',
+          },
+        }} 
+      />
+
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -59,8 +104,8 @@ function Contact() {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-1">Email</h4>
-                <a href="mailto:contact@example.com" className="text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors">
-                  contact@example.com
+                <a href="mailto:aswint2018@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors">
+                  aswint2018@gmail.com
                 </a>
               </div>
             </div>
@@ -72,7 +117,7 @@ function Contact() {
               <div>
                 <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-1">Location</h4>
                 <p className="text-slate-600 dark:text-slate-400">
-                  Remote / Worldwide
+                  Kerala
                 </p>
               </div>
             </div>
@@ -84,7 +129,7 @@ function Contact() {
               <div>
                 <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-1">Phone</h4>
                 <p className="text-slate-600 dark:text-slate-400">
-                  +1 (234) 567-8900
+                  +91 7356903266
                 </p>
               </div>
             </div>
@@ -109,7 +154,7 @@ function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    placeholder="John Doe"
+                    placeholder="Full Name"
                   />
                 </div>
                 <div className="space-y-2">
@@ -122,7 +167,7 @@ function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    placeholder="john@example.com"
+                    placeholder="name@example.com"
                   />
                 </div>
               </div>
@@ -137,7 +182,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                  placeholder="Project Inquiry"
+                  placeholder="How can I help you?"
                 />
               </div>
 

@@ -4,7 +4,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
-  const [darkMode, setDarkMode] = React.useState(true);
+  // const [darkMode, setDarkMode] = React.useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const location = useLocation();
 
@@ -13,10 +13,10 @@ const Header = () => {
     document.documentElement.classList.add("dark");
   }, []);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark", !darkMode);
-  };
+  // const toggleDarkMode = () => {
+  //   setDarkMode(!darkMode);
+  //   document.documentElement.classList.toggle("dark", !darkMode);
+  // };
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -60,13 +60,13 @@ const Header = () => {
         </ul>
 
         <div className="flex items-center space-x-4">
-          <button
+          {/* <button
             onClick={toggleDarkMode}
             className="p-2 rounded-full bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 transition-colors"
             aria-label="Toggle dark mode"
           >
             {darkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-slate-700" />}
-          </button>
+          </button> */}
           
           <button 
             className="md:hidden p-2 text-slate-700 dark:text-slate-300"

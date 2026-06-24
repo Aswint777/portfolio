@@ -1,11 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
+import E_learning from "../assets/photos/Screenshot 2026-06-23 150720.png"
 
 function Projects() {
   const projectsData = [
     {
       title: "E-Commerce Platform",
+             subTitle: "Real-time Chat Application",
       description: "A full-featured MERN stack e-commerce application with Stripe integration, admin dashboard, and Redux state management.",
       tech: ["React", "Node.js", "MongoDB", "Express", "Redux Toolkit", "TailwindCSS"],
       image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800",
@@ -13,15 +15,17 @@ function Projects() {
       repoLink: "#"
     },
     {
-      title: "E-Learning Management System",
+      title: "All Beyond",
+             subTitle: "E-Learning Management System",
       description: "Comprehensive LMS platform supporting video uploads, course tracking, student dashboards, and payment processing.",
       tech: ["React", "Node.js", "MongoDB", "AWS S3", "Socket.io"],
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
-      demoLink: "#",
+      image: E_learning,
+      demoLink: "https://allbeyonds.vercel.app/",
       repoLink: "#"
     },
     {
       title: "Real-time Chat Application",
+      subTitle: "Real-time Chat Application",
       description: "A modern chat app featuring real-time messaging, group chats, typing indicators, and read receipts using WebSockets.",
       tech: ["React", "Socket.io", "Node.js", "Tailwind CSS"],
       image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
@@ -30,6 +34,7 @@ function Projects() {
     },
     {
       title: "Portfolio Template",
+             subTitle: "Real-time Chat Application",
       description: "A highly customizable, performant, and beautifully animated developer portfolio built with React and Framer Motion.",
       tech: ["React", "Framer Motion", "Vite", "Tailwind CSS"],
       image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
