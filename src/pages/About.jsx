@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, Database, Globe, Server } from "lucide-react";
-import myImage from "../assets/photos/WhatsApp Image 2026-03-25 at 12.16.32.jpeg";
+import myImage from "../assets/photos/ChatGPT Image Jun 24, 2026, 04_51_30 PM.png";
 
 function About() {
   const containerVariants = {

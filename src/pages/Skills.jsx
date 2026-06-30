@@ -1,47 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Layout, Server, Database, Wrench } from "lucide-react";
 
 function Skills() {
   const skillCategories = [
     {
       title: "Frontend Development",
-      skills: [
-        { name: "React.js", level: 90 },
-        { name: "JavaScript (ES6+)", level: 85 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Framer Motion", level: 80 },
-        { name: "HTML5/CSS3", level: 95 },
-      ]
+      icon: <Layout className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />,
+      skills: ["React.js", "JavaScript (ES6+)", "Tailwind CSS", "HTML5", "CSS3", "Redux"]
     },
     {
       title: "Backend Development",
-      skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 85 },
-        { name: "RESTful APIs", level: 90 },
-        { name: "GraphQL", level: 70 },
-        { name: "WebSockets", level: 75 },
-      ]
+      icon: <Server className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />,
+      skills: ["Node.js", "Express.js", "RESTful APIs", "JWT"]
     },
     {
       title: "Database & Cloud",
-      skills: [
-        { name: "MongoDB", level: 85 },
-        { name: "Mongoose", level: 85 },
-        { name: "Firebase", level: 75 },
-        { name: "AWS S3", level: 70 },
-        { name: "PostgreSQL", level: 65 },
-      ]
+      icon: <Database className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />,
+      skills: ["MongoDB", "Mongoose", "AWS S3", "Cloudinary"]
     },
     {
       title: "Tools & DevOps",
-      skills: [
-        { name: "Git/GitHub", level: 90 },
-        { name: "Postman", level: 85 },
-        { name: "Docker", level: 65 },
-        { name: "Vite/Webpack", level: 80 },
-        { name: "Linux/Bash", level: 75 },
-      ]
+      icon: <Wrench className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />,
+      skills: ["Git", "GitHub", "Postman", "Render", "Vercel","netlify"]
     }
   ];
 
@@ -50,7 +31,7 @@ function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -67,6 +48,8 @@ function Skills() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-28 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
+        
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,39 +65,43 @@ function Skills() {
           </p>
         </motion.div>
 
+        {/* Skills Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
           className="grid md:grid-cols-2 gap-8"
         >
           {skillCategories.map((category, idx) => (
-            <motion.div key={idx} variants={itemVariants} className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-800 pb-3">
-                {category.title}
-              </h3>
-              <div className="space-y-6">
+            <motion.div 
+              key={idx} 
+              variants={itemVariants} 
+              className="bg-white dark:bg-slate-900/50 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center space-x-4 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <div className="p-3 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl">
+                  {category.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">
+                  {category.title}
+                </h3>
+              </div>
+              
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, sIdx) => (
-                  <div key={sIdx}>
-                    <div className="flex justify-between mb-1 text-sm font-medium text-slate-700 dark:text-slate-300">
-                      <span>{skill.name}</span>
-                      <span>{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <span 
+                    key={sIdx}
+                    className="px-4 py-2 text-sm font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-500/20 dark:hover:text-indigo-300 transition-colors cursor-default"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </motion.div>
           ))}
         </motion.div>
+
       </div>
     </div>
   );

@@ -25,10 +25,10 @@ export default function Footer() {
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
               <FaLinkedin size={20} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
+            {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
               <FaTwitter size={20} />
-            </a>
-            <a href="mailto:contact@example.com" className="text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
+            </a> */}
+            <a href="/contact" className="text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">
               <Mail size={20} />
             </a>
           </div>

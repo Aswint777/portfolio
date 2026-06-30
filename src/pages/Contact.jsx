@@ -167,7 +167,7 @@ function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    placeholder="name@example.com"
+                    placeholder="***@example.com"
                   />
                 </div>
               </div>
